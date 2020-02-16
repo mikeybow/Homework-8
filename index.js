@@ -26,18 +26,16 @@ const questions = [
     }
 ];
 
-
-function writeToFile(fileName, data) {
-
+function writeToFile(data) {
+    fs.writeFileSync(`${data.username}.pdf`, generatePDF.generateHTML);
 }
+
 
 
 function init() {
     inquirer.prompt(questions)
     .then(data => {
-        console.log(`https://www.google.com/maps/place/${data.location}`);
-        console.log(`https://github.com/${data.GitHub}`);
-        console.log(data.username);
+        writeToFile(data);
     });
 }
 init();

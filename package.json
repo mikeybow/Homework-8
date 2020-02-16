@@ -1,5 +1,5 @@
 {
-  "name": "Homework-8",
+  "name": "generatepdf",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mikeybow/Homework-8#readme",
   "dependencies": {
+    "fs": "0.0.1-security",
     "inquirer": "^7.0.4"
   }
 }

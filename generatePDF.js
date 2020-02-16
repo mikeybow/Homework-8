@@ -34,7 +34,7 @@ const colors = {
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
         <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-        <title>Document</title>
+        <title>Generate PDF</title>
         <style>
             @page {
               margin: 0;
@@ -172,7 +172,10 @@ const colors = {
            }
         </style>
       </head>
-      <body>`
+      <body>
+      <h1>Hi </h1>
+      </body>
+      </html>`
           };
 
 module.exports = {colors, generateHTML};
