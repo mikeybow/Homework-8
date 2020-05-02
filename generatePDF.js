@@ -173,9 +173,12 @@ const colors = {
         </style>
       </head>
       <body>
-      <h1>Hi </h1>
+
+      <h1>${favcolor} </h1>
+      <h1>${location}</h1>
       </body>
       </html>`
           };
 
 module.exports = {colors, generateHTML};
+
