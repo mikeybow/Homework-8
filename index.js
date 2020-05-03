@@ -39,7 +39,8 @@ const pdfConvert = pageInfo => {
             return console.error(err);
         }
 
-        result.stream.pipe(fs.createWriteStream('/PDF/user.pdf'));
+        result.stream.pipe(fs.createWriteStream(`${__dirname}/PDF/user.pdf`));
+        conversion.kill();
     });    
 }
 
