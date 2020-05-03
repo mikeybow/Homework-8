@@ -26,6 +26,25 @@ const colors = {
   };
   
   function generateHTML(data) {
+    let currentColor;
+
+    switch (data.color) {
+      case "green":
+        currentColor = colors.green;
+        break;
+      case "blue":
+        currentColor = colors.blue;
+        break;
+      case "pink":
+        currentColor = colors.pink;
+        break;
+      case "red":
+        currentColor = colors.red;
+        break;
+      default:
+        console.log("Invalid Color");
+    };
+
     return `<!DOCTYPE html>
   <html lang="en">
      <head>
@@ -52,7 +71,7 @@ const colors = {
            height: 100%;
            }
            .wrapper {
-           background-color: ${colors[data.color].wrapperBackground};
+           background-color: ${currentColor.wrapperBackground};
            padding-top: 100px;
            }
            body {
@@ -94,8 +113,8 @@ const colors = {
            display: flex;
            justify-content: center;
            flex-wrap: wrap;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: ${currentColor.headerBackground};
+           color: ${currentColor.headerColor};
            padding: 10px;
            width: 95%;
            border-radius: 6px;
@@ -106,7 +125,7 @@ const colors = {
            border-radius: 50%;
            object-fit: cover;
            margin-top: -75px;
-           border: 6px solid ${colors[data.color].photoBorderColor};
+           border: 6px solid ${currentColor.photoBorderColor};
            box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
            }
            .photo-header h1, .photo-header h2 {
@@ -149,8 +168,8 @@ const colors = {
            .card {
              padding: 20px;
              border-radius: 6px;
-             background-color: ${colors[data.color].headerBackground};
-             color: ${colors[data.color].headerColor};
+             background-color: ${currentColor.headerBackground};
+             color: ${currentColor.headerColor};
              margin: 20px;
            }
            
@@ -174,8 +193,10 @@ const colors = {
       </head>
       <body>
 
-      <h1>${favcolor} </h1>
-      <h1>${location}</h1>
+      <h1>${data.username}</h1>
+      <h3>${data.color}</h3>
+      <h3>${data.location}</h3>
+      <a href="${data.GitHub}">${data.GitHub}</a>
       </body>
       </html>`
           };

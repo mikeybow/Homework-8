@@ -1,7 +1,8 @@
 const inquirer = require("inquirer");
-const convertFactory = require(“electron-html-to”);
+const convertFactory = require("electron-html-to");
 const fs = require("fs");
-const generatePDF= require("./generatePDF")
+const generatePDF= require("./generatePDF");
+const axios = require("axios");
 
 const questions = [
     {
@@ -27,19 +28,38 @@ const questions = [
     }
 ];
 
+const pdfConvert = pageInfo => {
+    var conversion = convertFactory({
+        converterPath: convertFactory.converters.PDF
+    });
+    
+    
+    conversion({ html: pageInfo }, function(err, result) {
+        if (err) {
+            return console.error(err);
+        }
 
-
-function writeToFile(data) {
-    fs.writeFileSync(`${data.username}.pdf`, generatePDF.generateHTML);
+        result.stream.pipe(fs.createWriteStream('/PDF/user.pdf'));
+    });    
 }
-
-
 
 function init() {
     inquirer.prompt(questions)
     //when you prompt for the username, make an API to github to grab the information from the github user's API 
     .then(data => {
+        axios.get(`https://api.github.com/search/users?q=${data.GitHub}`)
+        .then(function(res) {
+            const items = res.data.items[0];
+            const userInfo = {
+                "color": data.favColor,
+                "location": data.location,
+                "username": items.login,
+                "GitHub": items.url
+            }
+            const newHTML = generatePDF.generateHTML(userInfo);
 
+            pdfConvert(newHTML);
+        });
     });
 }
 
@@ -48,13 +68,5 @@ function init() {
 //template literals are the ${variable} 
 
 //this needs to be commented out, you will need thsi in order to send the html you generate to the PDF converter 
-const html = generatePDF(data)
-var conversion = convertFactory({
-    converterPath: convertFactory.converters.PDF
-  });
-  
-  conversion({ html: htmlDone }, function(err, result) {
-    if (err) {
-      return console.error(err);
-    }
+
 init();
