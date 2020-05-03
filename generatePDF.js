@@ -193,10 +193,10 @@ const colors = {
       </head>
       <body>
 
-      <h1>${data.username}</h1>
-      <h3>${data.color}</h3>
-      <h3>${data.location}</h3>
-      <a href="${data.GitHub}">${data.GitHub}</a>
+        <h1>${data.username}</h1>
+        <h3>${data.color}</h3>
+        <h3>${data.location}</h3>
+        <h2>${data.GitHub}</h2>
       </body>
       </html>`
           };

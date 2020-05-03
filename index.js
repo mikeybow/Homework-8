@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
-const convertFactory = require("electron-html-to");
 const fs = require("fs");
+const convertFactory = require("electron-html-to");
 const generatePDF= require("./generatePDF");
 const axios = require("axios");
 
@@ -28,8 +28,8 @@ const questions = [
     }
 ];
 
-const pdfConvert = pageInfo => {
-    var conversion = convertFactory({
+function pdfConvert(pageInfo) {
+    const conversion = convertFactory({
         converterPath: convertFactory.converters.PDF
     });
     
@@ -39,7 +39,8 @@ const pdfConvert = pageInfo => {
             return console.error(err);
         }
 
-        result.stream.pipe(fs.createWriteStream('/PDF/user.pdf'));
+        result.stream.pipe(fs.createWriteStream('./PDF/user.pdf'));
+        conversion.kill();
     });    
 }
 
